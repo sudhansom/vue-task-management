@@ -1,18 +1,12 @@
-export default {
-    template: `
-            <section>
-                <ul>
-                    <h2> Completed Assignments </h2>
-                    <li v-for="assignment in filters.completed" :key="assignment.id">{{ assignment.title}}</li>  
-                </ul>
-            </section>
+import AssignmentLists from "./AssignmentLists.js"
 
-            <section>
-                <ul>
-                    <h2> In Progress Assignments </h2>
-                    <li v-for="assignment in filters.inProgress" :key="assignment.id">{{ assignment.title}}</li>  
-                </ul>
-            </section>
+export default {
+    components: {
+        'assignment-lists': AssignmentLists
+    },
+    template: `
+            <assignment-lists title="Completed Assignments" :assignments="filters.completed" />
+            <assignment-lists title="InProgress Assignments" :assignments="filters.inProgress" />
     `,
     data(){
         return {
@@ -33,5 +27,14 @@ export default {
             }
         }
     }
+
+    // computed: {
+    //     completed(){
+    //         return this.assignments.filter(assignment => assignment.completed);
+    //     } ,
+    //     inProgress(){
+    //         return this.assignments.filter(assignment => !assignment.completed);
+    //     }
+    // }
 }
 
