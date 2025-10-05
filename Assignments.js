@@ -2,7 +2,15 @@ export default {
     template: `
             <section>
                 <ul>
-                    <li v-for="assignment in completed" :key="assignment.id">{{ assignment.title}}</li>  
+                    <h2> Completed Assignments </h2>
+                    <li v-for="assignment in filters.completed" :key="assignment.id">{{ assignment.title}}</li>  
+                </ul>
+            </section>
+
+            <section>
+                <ul>
+                    <h2> In Progress Assignments </h2>
+                    <li v-for="assignment in filters.inProgress" :key="assignment.id">{{ assignment.title}}</li>  
                 </ul>
             </section>
     `,
@@ -17,11 +25,12 @@ export default {
         }
     },
     computed: {
-        completed(){
-            return this.assignments.filter(assignment => assignment.completed);
-        } ,
-        inProgress(){
-            return this.assignments.filter(assignment => !assignment.completed);
+        filters() {
+            return {
+                completed: this.assignments.filter(assignment => assignment.completed),
+                inProgress: this.assignments.filter(assignment => !assignment.completed),
+
+            }
         }
     }
 }
