@@ -7,6 +7,10 @@ export default {
     template: `
             <assignment-lists title="Completed Assignments" :assignments="filters.completed" />
             <assignment-lists title="InProgress Assignments" :assignments="filters.inProgress" />
+            <form @submit.prevent="submitForm" class="border border-gray-300 rounded-md p-1 bg-gray-300">
+                <input v-model="newTask" class="bg-white p-1 mr-2 rounded-md" type="text" placeholder="Enter a task..." />
+                <button class="bg-gray-500 text-white p-2 rounded-md cursor-pointer hover:bg-gray-400">Submit</button>
+            </form>
     `,
     data(){
         return {
@@ -15,7 +19,8 @@ export default {
                 {title: 'task 2', completed: false, id: 2},
                 {title: 'task 3', completed: true, id: 3},
                 {title: 'task 4', completed: false, id: 4},
-            ]
+            ],
+            newTask: ''
         }
     },
     computed: {
@@ -25,6 +30,12 @@ export default {
                 inProgress: this.assignments.filter(assignment => !assignment.completed),
 
             }
+        }
+    }, 
+    methods: {
+        submitForm(){
+            this.assignments.push({title: this.newTask, completed: false});
+            this.newTask = "";
         }
     }
 
