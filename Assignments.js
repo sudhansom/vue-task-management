@@ -34,6 +34,9 @@ export default {
     }, 
     methods: {
         submitForm(){
+            if(this.newTask == ''){
+                return
+            }
             this.assignments.push({title: this.newTask, completed: false});
             this.newTask = "";
         }

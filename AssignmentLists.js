@@ -8,10 +8,13 @@ export default {
             <ul class="border  border-black rounded-lg p-2">
                 <h2 class="font-bold text-center mb-2"> {{ title }} </h2>
                 <span @click="changeTag(tag)" 
-                    class="mr-2 border border-gray-200 hover:border-gray-400 cursor-pointer rounded-sm p-1 text-small" v-for="tag in tags"
-                    :class="tag == currentTag? 'border-blue-400':''"
+                    class="mr-2 border border-gray-200 hover:border-gray-400 cursor-pointer rounded-sm p-1 text-small hover:bg-gray-200" 
+                    v-for="tag in tags"
+                    :class="{
+                        'border-green-900 hover:border-green-900': tag === currentTag
+                    }"
                 >
-                    {{tag}}
+                    {{ tag }} 
                 </span>
                 <hr class="border-none mt-2" />
                 <li v-for="assignment in assignments" :key="assignment.id">
@@ -36,8 +39,7 @@ export default {
     },
     methods: {
         changeTag(tag){
-            this.currentTag = 'tag';
-            console.log('tag', tag)
+            this.currentTag = tag;
         }
     }
 }
