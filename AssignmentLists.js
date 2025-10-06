@@ -12,7 +12,7 @@ export default {
                 <h2 class="font-bold text-center mb-2"> {{ title }} </h2>
                 <assignment-tags @changeTag="currentTag = $event" :tags="tags" :current-tag="currentTag" />
                 <hr class="border-none mt-2" />
-                <li v-for="assignment in assignments" :key="assignment.id">
+                <li v-for="assignment in filteredAssignments" :key="assignment.id">
                     <each-assignment :assignment="assignment" />
                 </li>  
             </ul>
@@ -28,6 +28,12 @@ export default {
         assignments: Array,
     },
     computed: {
+        filteredAssignments(){
+            if(this.currentTag === 'all'){
+                return this.assignments
+            }
+            return this.assignments.filter(assignment => assignment.tag === this.currentTag)
+        },
         tags(){
             return new Set(['all', ...this.assignments.map(assignment => assignment.tag)]);
         }
