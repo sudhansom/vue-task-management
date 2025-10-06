@@ -9,7 +9,7 @@ export default {
     template: `
             <assignment-lists title="Completed Assignments" :assignments="filters.completed" />
             <assignment-lists title="InProgress Assignments" :assignments="filters.inProgress" />
-            <assignment-create @submit="submitForm" />
+            <assignment-create @add="submitForm" />
     `,
     data(){
         return {
@@ -33,7 +33,7 @@ export default {
     methods: {
         submitForm(newTask){
             console.log(newTask);
-            this.assignments.push({title: newTask, completed: false});
+            this.assignments.push({title: newTask, completed: false, tag: 'science'});
             
         }
     }
