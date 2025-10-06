@@ -1,16 +1,15 @@
 import AssignmentLists from "./AssignmentLists.js"
+import AssignmentCreate from "./AssignmentCreate.js"
 
 export default {
     components: {
-        'assignment-lists': AssignmentLists
+        'assignment-lists': AssignmentLists,
+        'assignment-create': AssignmentCreate
     },
     template: `
             <assignment-lists title="Completed Assignments" :assignments="filters.completed" />
             <assignment-lists title="InProgress Assignments" :assignments="filters.inProgress" />
-            <form @submit.prevent="submitForm" class="border border-gray-300 rounded-md p-1 bg-gray-300">
-                <input v-model="newTask" class="bg-white p-1 mr-2 rounded-md" type="text" placeholder="Enter a task..." />
-                <button class="bg-gray-500 text-white p-2 rounded-md cursor-pointer hover:bg-gray-400">Submit</button>
-            </form>
+            <assignment-create @submit="submitForm" />
     `,
     data(){
         return {
@@ -20,7 +19,6 @@ export default {
                 {title: 'task 3', completed: true, id: 3, tag: 'history'},
                 {title: 'task 4', completed: false, id: 4, tag: 'biology'},
             ],
-            newTask: ''
         }
     },
     computed: {
@@ -33,12 +31,10 @@ export default {
         }
     }, 
     methods: {
-        submitForm(){
-            if(this.newTask == ''){
-                return
-            }
-            this.assignments.push({title: this.newTask, completed: false});
-            this.newTask = "";
+        submitForm(newTask){
+            console.log(newTask);
+            this.assignments.push({title: newTask, completed: false});
+            
         }
     }
 
