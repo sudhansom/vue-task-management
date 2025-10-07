@@ -10,7 +10,7 @@ export default {
         <section v-if="assignments.length" class="mb-2">
             <ul class="border  border-black rounded-lg p-2">
                 <h2 class="font-bold text-center mb-2"> {{ title }} </h2>
-                <assignment-tags @changeTag="currentTag = $event" :tags="tags" :current-tag="currentTag" />
+                <assignment-tags :tags="tags" v-model:currentTag="currentTag" />
                 <hr class="border-none mt-2" />
                 <li v-for="assignment in filteredAssignments" :key="assignment.id">
                     <each-assignment :assignment="assignment" />

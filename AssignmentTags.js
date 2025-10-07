@@ -6,7 +6,7 @@ export default {
         :class="{
             'border-green-900 hover:border-green-900': tag === currentTag
         }"
-        @click="$emit('changeTag', tag)" 
+        @click="$emit('update:currentTag', tag)" 
     >
         {{ tag }}
     </span>
