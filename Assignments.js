@@ -7,9 +7,12 @@ export default {
         'assignment-create': AssignmentCreate
     },
     template: `
-            <assignment-lists title="Completed Assignments" :assignments="filters.completed" />
-            <assignment-lists title="InProgress Assignments" :assignments="filters.inProgress" />
-            <assignment-create @add="submitForm" />
+            <div class="flex gap-8">
+                <assignment-lists title="Completed Assignments" :assignments="filters.completed" >
+                    <assignment-create @add="submitForm" />
+                </assignment-lists>
+                <assignment-lists title="InProgress Assignments" :assignments="filters.inProgress" />
+            </div>
     `,
     data(){
         return {

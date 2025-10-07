@@ -8,7 +8,7 @@ export default {
     },
     template: `
         <section v-if="assignments.length" class="mb-2">
-            <ul class="border  border-black rounded-lg p-2">
+            <ul class="border mb-2  border-black rounded-lg p-2">
                 <h2 class="font-bold text-center mb-2"> {{ title }} </h2>
                 <assignment-tags :tags="tags" v-model:currentTag="currentTag" />
                 <hr class="border-none mt-2" />
@@ -16,6 +16,7 @@ export default {
                     <each-assignment :assignment="assignment" />
                 </li>  
             </ul>
+            <slot />
         </section>
     `,
     data(){
