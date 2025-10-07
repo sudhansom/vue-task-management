@@ -7,9 +7,11 @@ export default {
         'assignment-tags': AssignmentTags
     },
     template: `
-        <section v-if="assignments.length" class="mb-2">
+        <section v-if="show && assignments.length" class="w-80 mb-2">
             <ul class="border mb-2  border-black rounded-lg p-2">
-                <h2 class="font-bold text-center mb-2"> {{ title }} </h2>
+                <h2 class="font-bold mb-2 flex justify-between"> {{ title }} 
+                    <span v-if="showCross" @click="show=false" class="cursor-pointer hover:text-gray-600">X</span>
+                </h2>
                 <assignment-tags :tags="tags" v-model:currentTag="currentTag" />
                 <hr class="border-none mt-2" />
                 <li v-for="assignment in filteredAssignments" :key="assignment.id">
@@ -22,11 +24,13 @@ export default {
     data(){
         return {
             currentTag: 'all',
+            show: true,
         }
     },
     props: {
         title: String,
         assignments: Array,
+        showCross: Boolean
     },
     computed: {
         filteredAssignments(){

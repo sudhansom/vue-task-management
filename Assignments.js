@@ -11,7 +11,7 @@ export default {
                 <assignment-lists title="Completed Assignments" :assignments="filters.completed" >
                     <assignment-create @add="submitForm" />
                 </assignment-lists>
-                <assignment-lists title="InProgress Assignments" :assignments="filters.inProgress" />
+                <assignment-lists title="InProgress Assignments" :assignments="filters.inProgress" show-cross />
             </div>
     `,
     data(){
