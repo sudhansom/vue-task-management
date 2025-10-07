@@ -13,13 +13,13 @@ export default {
     `,
     data(){
         return {
-            assignments: [
-                {title: 'task 1', completed: true, id: 1, tag: 'math'},
-                {title: 'task 2', completed: false, id: 2, tag: 'science'},
-                {title: 'task 3', completed: true, id: 3, tag: 'history'},
-                {title: 'task 4', completed: false, id: 4, tag: 'biology'},
-            ],
+            assignments: [],
         }
+    },
+    created(){
+        fetch('http://localhost:3000/assignments')
+        .then(response => response.json())
+        .then(data => {this.assignments = data})
     },
     computed: {
         filters() {
