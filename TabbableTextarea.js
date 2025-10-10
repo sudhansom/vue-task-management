@@ -12,9 +12,21 @@ export default {
     methods: {
         tabbableTextarea(e){
 
-            let value = e.target.value;
+            let textarea = e.target;
 
-            console.log(value);
+            let start = textarea.selectionStart;
+            let end = textarea.selectionEnd;
+
+            textarea.value = textarea.value.substring(0, start) + "\t" + textarea.value.substring(end);
+
+            textarea.selectionStart = textarea.selectionEnd = start + 1;
+
+
+
+            console.log(start, end);
+            
+
+            
         }
     }
 }
