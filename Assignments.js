@@ -1,6 +1,6 @@
 import AssignmentLists from "./AssignmentLists.js"
 import AssignmentCreate from "./AssignmentCreate.js"
-import {myData} from './myData.js';
+// import { myData } from "./myData.js"
 
 export default {
     components: {
@@ -21,10 +21,10 @@ export default {
         }
     },
     created(){
-        // fetch('http://localhost:3000/assignments')
-        // .then(response => response.json())
-        // .then(data => {this.assignments = data})
-        this.assignments = myData;
+        fetch('http://localhost:3000/assignments')
+        .then(response => response.json())
+        .then(data => {this.assignments = data})
+        // this.assignments = myData;
 
     },
     computed: {
