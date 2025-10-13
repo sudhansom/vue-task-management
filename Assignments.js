@@ -1,10 +1,11 @@
 import AssignmentLists from "./AssignmentLists.js"
 import AssignmentCreate from "./AssignmentCreate.js"
+import {myData} from './myData.js';
 
 export default {
     components: {
         'assignment-lists': AssignmentLists,
-        'assignment-create': AssignmentCreate
+        'assignment-create': AssignmentCreate,
     },
     template: `
             <div class="flex gap-8">
@@ -20,9 +21,11 @@ export default {
         }
     },
     created(){
-        fetch('http://localhost:3000/assignments')
-        .then(response => response.json())
-        .then(data => {this.assignments = data})
+        // fetch('http://localhost:3000/assignments')
+        // .then(response => response.json())
+        // .then(data => {this.assignments = data})
+        this.assignments = myData;
+
     },
     computed: {
         filters() {
